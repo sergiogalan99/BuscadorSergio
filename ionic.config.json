@@ -1,0 +1,7 @@
+{
+  "name": "BuscadorHoteles",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

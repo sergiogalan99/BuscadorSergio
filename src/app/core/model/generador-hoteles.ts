@@ -43,14 +43,14 @@ export class GeneradorHoteles {
 
     public obtenerCama(): Camas {
         let cama;
-        let numeroCama = this.getRandom(0, 2);
+        let numeroCama = this.getRandom(1, 3);
         cama = Camas[numeroCama];
         return cama;
 
     }
     public obtenerCapacidad(): Capacidad {
         let capacidad;
-        let numeroCapacidad = this.getRandom(0, 2);
+        let numeroCapacidad = this.getRandom(1, 3);
         capacidad = Capacidad[numeroCapacidad];
         return capacidad;
 

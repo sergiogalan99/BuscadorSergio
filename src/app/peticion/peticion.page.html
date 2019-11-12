@@ -20,17 +20,15 @@
     
     <ion-item >
       <ion-label >Categoria</ion-label>
-      <ion-select [(ngModel)]="seleccionCategoria" class="tamanoLetter">
-        
+      <ion-select [(ngModel)]="seleccionCategoria" class="tamanoLetter" placeholder="Selecciona">
         <ion-select-option *ngFor="let categoria of arrayCategoria" value="{{categoria}}">
           {{categoria}}</ion-select-option>
-      </ion-select>
+               </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Camas</ion-label>
-      <ion-select [(ngModel)]="seleccionCama" class="tamanoLetter">
-        <ion-select-option value="">Seleciona</ion-select-option>
+      <ion-select [(ngModel)]="seleccionCama" class="tamanoLetter"placeholder="Selecciona">
         <ion-select-option *ngFor="let camas of arrayCama" value="{{camas}}">{{camas}}
         </ion-select-option>
       </ion-select>
@@ -38,8 +36,7 @@
 
     <ion-item>
       <ion-label>Capacidad</ion-label>
-      <ion-select [(ngModel)]="seleccionCapacidad" class="tamanoLetter">
-        <ion-select-option value="">Selecciona</ion-select-option>
+      <ion-select [(ngModel)]="seleccionCapacidad" class="tamanoLetter" placeholder="Selecciona">
         <ion-select-option *ngFor="let capacidad of arrayCapacidad" value="{{capacidad}}"> 
           {{capacidad}}</ion-select-option>
       </ion-select>
@@ -47,7 +44,7 @@
 
     <ion-item>
       <ion-label>Extras</ion-label>
-      <ion-select [(ngModel)]="extrasHtml" multiple="true" class="tamanoLetter">
+      <ion-select [(ngModel)]="extrasHtml" multiple="true" class="tamanoLetter"placeholder="Selecciona">
         <ion-select-option *ngFor="let extras of arrayExtras" value="{{extras}}">{{extras}}
         </ion-select-option>
       </ion-select>
@@ -67,7 +64,9 @@
 
   </ion-list>
   <br>
-  <ion-button expand="block" (click)="buscarHotel()">BUSCAR</ion-button>
+  <ion-button expand="block" (click)="buscarHotel()">
+      <ion-icon ios="ios-search" md="md-search"></ion-icon>BUSCAR
+</ion-button>
   <br><br><br>
   <ion-footer class="labelFooter">Sergio Galán y David Arias</ion-footer>
 </ion-content>

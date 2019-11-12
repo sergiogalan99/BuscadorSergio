@@ -3,7 +3,7 @@ import { TipoHabitacion } from './../core/model/tipoHabitacion';
 import { Categoria } from './../core/model/categoria';
 import { Seleccion } from './../core/model/seleccion';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Hotel } from '../core/model/hotel';
 import { Habitacion } from '../core/model/habitacion';
 
@@ -16,58 +16,71 @@ export class ResultadoPage implements OnInit {
 
   public _arrayHoteles: Hotel[] = [];
   private hotelesOriginales: Hotel[];
-
+  public habitacionEspecicifica;
+  public nombreHotelCaracteristicaAfondo:string;
+  private hoteles: Hotel[];
+ 
   constructor(public router: Router) {
     this.hotelesOriginales = this.router.getCurrentNavigation().extras.state.hoteles;
     let seleccion: Seleccion = this.router.getCurrentNavigation().extras.state.seleccion;
+    this.hoteles=this.hotelesOriginales;
     this.filtrarHoteles(seleccion);
   }
-
   ngOnInit() {
+   
+  }
+  public caracteristicasAvanzadas(nombreHotelCaracteristicaAfondo: string) {
+     
+    this.habitacionEspecicifica = [nombreHotelCaracteristicaAfondo];
+    let navigationExtras: NavigationExtras = {
+      state: {
+        habitacionEspecicifica: this.habitacionEspecicifica,
+        hoteles:this.hoteles
+      }
+    }
+    this.router.navigate(['habitacion'], navigationExtras);
   }
 
-  
-
   private filtrarHoteles(seleccion: Seleccion) {
-    let hotelesFiltrados: Hotel[] = this.filtrarPorPrecio(seleccion,this.hotelesOriginales);
- 
+    let hotelesFiltrados: Hotel[] = this.filtrarPorPrecio(seleccion, this.hotelesOriginales);
+
 
     if (seleccion.puntuacion) {
       let hotelPorPuntuacion = this.filtrarPorPuntuacion(seleccion, hotelesFiltrados);
-      hotelesFiltrados=hotelPorPuntuacion;
-    } 
-
-    if (seleccion.capacidad&&seleccion.capacidad!=="") {
-      let hotelPorCapacidad=this.filtrarPorCapacidad(seleccion,hotelesFiltrados);
-      hotelesFiltrados=hotelPorCapacidad;
+      hotelesFiltrados = hotelPorPuntuacion;
     }
 
-    if(seleccion.cama&&seleccion.cama!==""){
-      let hotelPorCama=this.filtrarPorCama(seleccion,hotelesFiltrados);
-      hotelesFiltrados=hotelPorCama;
-      
+    if (seleccion.capacidad && seleccion.capacidad !== "") {
+      let hotelPorCapacidad = this.filtrarPorCapacidad(seleccion, hotelesFiltrados);
+      hotelesFiltrados = hotelPorCapacidad;
     }
-    if (seleccion.extras&&seleccion.extras.length>0) {
-      let hotelPorExtra=this.filtrarPorExtras(seleccion,hotelesFiltrados);
-      hotelesFiltrados=hotelPorExtra;
+
+    if (seleccion.cama && seleccion.cama !== "") {
+      let hotelPorCama = this.filtrarPorCama(seleccion, hotelesFiltrados);
+      hotelesFiltrados = hotelPorCama;
+
+    }
+    if (seleccion.extras && seleccion.extras.length > 0) {
+      let hotelPorExtra = this.filtrarPorExtras(seleccion, hotelesFiltrados);
+      hotelesFiltrados = hotelPorExtra;
     }
     this._arrayHoteles = hotelesFiltrados;
-    console.log(this.arrayHoteles);
+
   }
-  filtrarPorCama(seleccion: Seleccion, hoteles: Hotel[]):Hotel[] {
+  filtrarPorCama(seleccion: Seleccion, hoteles: Hotel[]): Hotel[] {
     let hotelesFiltrados: Hotel[] = [];
     hoteles.forEach(hotel => {
-      let habitacion = hotel.tiposHabitacion.filter(habitacion => habitacion.tipoHabitacion.camas.toString()==seleccion.cama);
+      let habitacion = hotel.tiposHabitacion.filter(habitacion => habitacion.tipoHabitacion.camas.toString() == seleccion.cama);
       if (habitacion.length > 0) {
         hotelesFiltrados.push(hotel);
       }
     })
     return hotelesFiltrados;
   }
-  filtrarPorCapacidad(seleccion: Seleccion, hoteles: Hotel[]):Hotel[] {
+  filtrarPorCapacidad(seleccion: Seleccion, hoteles: Hotel[]): Hotel[] {
     let hotelesFiltrados: Hotel[] = [];
     hoteles.forEach(hotel => {
-      let habitacion = hotel.tiposHabitacion.filter(habitacion => habitacion.tipoHabitacion.capacidad.toString()==seleccion.capacidad);
+      let habitacion = hotel.tiposHabitacion.filter(habitacion => habitacion.tipoHabitacion.capacidad.toString() == seleccion.capacidad);
       if (habitacion.length > 0) {
         hotelesFiltrados.push(hotel);
       }
@@ -76,11 +89,12 @@ export class ResultadoPage implements OnInit {
   }
 
   private filtrarPorPuntuacion(seleccion: Seleccion, hoteles: Hotel[]): Hotel[] {
-  
-    let hotelesFiltrados = hoteles.filter(hotel => Categoria[hotel.categoria.toString()]==seleccion.puntuacion);
+
+    console.log(seleccion.puntuacion);
+    let hotelesFiltrados = hoteles.filter(hotel => Categoria[hotel.categoria.toString()] == seleccion.puntuacion);
     return hotelesFiltrados;
   }
-  private filtrarPorPrecio(seleccion: Seleccion,hoteles:Hotel[]): Hotel[] {
+  private filtrarPorPrecio(seleccion: Seleccion, hoteles: Hotel[]): Hotel[] {
     let hotelesFiltrados: Hotel[] = [];
     hoteles.forEach(hotel => {
       let habitacion = hotel.tiposHabitacion.filter(habitacion => habitacion.precio <= seleccion.precioMax && habitacion.precio >= seleccion.precioMin);
@@ -91,19 +105,19 @@ export class ResultadoPage implements OnInit {
     return hotelesFiltrados;
   }
 
-  
 
-  private filtrarPorExtras(seleccion:Seleccion,hoteles:Hotel[]):Hotel[]{
+
+  private filtrarPorExtras(seleccion: Seleccion, hoteles: Hotel[]): Hotel[] {
     let hotelesFiltrados: Hotel[] = [];
     hoteles.forEach(hotel => {
-      let aniadirHotel=false;
-      hotel.tiposHabitacion.forEach(habitacion=>{
-       let habitacionFiltrada = habitacion.tipoHabitacion.complementos.nombre.filter(extra=>seleccion.extras.includes(extra.toString())&&seleccion.extras.length== habitacion.tipoHabitacion.complementos.nombre.length);
-       if(habitacionFiltrada.length>0){
-        aniadirHotel=true;
-       }
+      let aniadirHotel = false;
+      hotel.tiposHabitacion.forEach(habitacion => {
+        let habitacionFiltrada = habitacion.tipoHabitacion.complementos.nombre.filter(extra => seleccion.extras.includes(extra.toString()) && seleccion.extras.length == habitacion.tipoHabitacion.complementos.nombre.length);
+        if (habitacionFiltrada.length > 0) {
+          aniadirHotel = true;
+        }
       })
-      if(aniadirHotel){
+      if (aniadirHotel) {
         hotelesFiltrados.push(hotel);
       }
     })
@@ -113,4 +127,5 @@ export class ResultadoPage implements OnInit {
   public get arrayHoteles() {
     return this._arrayHoteles;
   }
+
 }

@@ -8,5 +8,26 @@
   </ion-header>
   
   <ion-content>
+    <ion-card *ngFor="let hoteles of hotelAImprimir">
    
+      <ion-card-header >
+       
+        <ion-card-title  >{{hoteles.nombre}}</ion-card-title>
+        <ion-card-subtitle>{{hoteles.categoria}}</ion-card-subtitle>
+  
+      </ion-card-header>
+  
+      <ion-card-content *ngFor="let habitacion of hoteles.tiposHabitacion">
+  
+        <img class="imagenHabitacion" src="{{habitacion.imagen}}">
+        <h3>Precio: {{habitacion.precio}} €</h3>
+        <h3>Camas: {{habitacion.tipoHabitacion.camas}}</h3>
+        <h3>Capacidad: {{habitacion.tipoHabitacion.capacidad}}</h3>
+        <h3>Complementos: {{habitacion.tipoHabitacion.complementos.nombre}}</h3>
+  
+      </ion-card-content>
+    
+      
+    </ion-card>
+  
 </ion-content>

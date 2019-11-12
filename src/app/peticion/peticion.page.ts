@@ -30,6 +30,7 @@ export class PeticionPage implements OnInit {
 
   constructor(public router: Router) {
     this.hoteles = new GeneradorHoteles().getHoteles();
+    console.log(this.hoteles);
     for (let index = 0; index < Object.keys(Categoria).length / 2; index++) {
       this._arrayCategoria.push(Categoria[index].toString());
     }

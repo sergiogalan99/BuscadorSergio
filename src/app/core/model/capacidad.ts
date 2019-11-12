@@ -1,3 +1,3 @@
 export enum Capacidad{
-    'Selecciona','SIMPLE', 'DOBLE', 'TRIPLE'
+    'SIMPLE', 'DOBLE', 'TRIPLE'
 }

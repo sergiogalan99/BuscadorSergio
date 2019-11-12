@@ -1,6 +1,6 @@
 export enum Categoria {
 
-  'Selecciona',
+ 'Selecciona',
   '⭐',
   '⭐⭐',
   '⭐⭐⭐',

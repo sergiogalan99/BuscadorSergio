@@ -1,3 +1,3 @@
 export enum Camas{
-    'Selecciona',INDIVIDUAL, DOBLE, KINGSIZE
+   INDIVIDUAL, DOBLE, KINGSIZE
 }

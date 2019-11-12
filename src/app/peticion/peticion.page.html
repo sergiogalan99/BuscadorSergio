@@ -21,6 +21,7 @@
     <ion-item >
       <ion-label >Categoria</ion-label>
       <ion-select [(ngModel)]="seleccionCategoria" class="tamanoLetter" placeholder="Selecciona">
+         
         <ion-select-option *ngFor="let categoria of arrayCategoria" value="{{categoria}}">
           {{categoria}}</ion-select-option>
                </ion-select>
@@ -29,6 +30,7 @@
     <ion-item>
       <ion-label>Camas</ion-label>
       <ion-select [(ngModel)]="seleccionCama" class="tamanoLetter"placeholder="Selecciona">
+        <ion-select-option value="">Selecciona</ion-select-option>
         <ion-select-option *ngFor="let camas of arrayCama" value="{{camas}}">{{camas}}
         </ion-select-option>
       </ion-select>
@@ -37,6 +39,7 @@
     <ion-item>
       <ion-label>Capacidad</ion-label>
       <ion-select [(ngModel)]="seleccionCapacidad" class="tamanoLetter" placeholder="Selecciona">
+          <ion-select-option value="">Selecciona</ion-select-option>
         <ion-select-option *ngFor="let capacidad of arrayCapacidad" value="{{capacidad}}"> 
           {{capacidad}}</ion-select-option>
       </ion-select>

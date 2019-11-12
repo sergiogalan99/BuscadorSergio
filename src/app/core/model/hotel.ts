@@ -2,7 +2,7 @@ import { Habitacion } from "./habitacion";
 import { Categoria } from "./categoria";
 
 export class Hotel {
-	//ee
+
         private _nombre:string;
         private _categoria: Categoria;
         private _tiposHabitacion: Habitacion[];

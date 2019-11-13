@@ -25,6 +25,7 @@ export class ResultadoPage implements OnInit {
     let seleccion: Seleccion = this.router.getCurrentNavigation().extras.state.seleccion;
     this.hoteles=this.hotelesOriginales;
     this.filtrarHoteles(seleccion);
+    
   }
   ngOnInit() {
    
@@ -46,6 +47,7 @@ export class ResultadoPage implements OnInit {
 
 
     if (seleccion.puntuacion) {
+    
       let hotelPorPuntuacion = this.filtrarPorPuntuacion(seleccion, hotelesFiltrados);
       hotelesFiltrados = hotelPorPuntuacion;
     }

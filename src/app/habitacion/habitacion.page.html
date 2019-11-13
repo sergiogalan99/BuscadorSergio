@@ -1,39 +1,56 @@
-  <ion-header>
-  
-    <ion-toolbar>
-      <ion-title>habitacion</ion-title>
-      <ion-button routerLink="/resultado">
-        <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
-      </ion-button>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content >
-    <ion-card  class="tarjetaHabitacion"  *ngFor="let hoteles of hotelAImprimir">
-   
-      <ion-card-header>
-       
-        <ion-card-title  >{{hoteles.nombre}}</ion-card-title>
-        <ion-card-subtitle>{{hoteles.categoria}}</ion-card-subtitle>
-  
-      </ion-card-header>
-  
-      <ion-card-content *ngFor="let habitacion of hoteles.tiposHabitacion">
-   <h1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{habitacion.localidad}}</h1>
-   <h2> <ion-icon ios="ios-call" md="md-call"></ion-icon> {{habitacion.telefono}}</h2>
+<ion-header>
 
-        <img class="imagenHabitacion" src="{{habitacion.imagen}}">
-       
-        <br>
-        <h2>{{habitacion.precio}}  <ion-icon ios="logo-usd" md="logo-usd"></ion-icon></h2>
-        <h2>Camas: {{habitacion.tipoHabitacion.camas}}</h2>
-        <h2>Capacidad: {{habitacion.tipoHabitacion.capacidad}}</h2>
-        <h2>Complementos: {{habitacion.tipoHabitacion.complementos.nombre}}</h2>
-        <br>
-        <h2>Opinion: {{habitacion.caracteristicasGenerales}}</h2>
-      </ion-card-content>
-    
+  <ion-toolbar>
+
+
+    <ion-title>habitacion</ion-title>
+    <ion-button routerLink="/resultado">
+      <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="tarjetaHabitacion" *ngFor="let hoteles of hotelAImprimir">
+
+
+
+    <ion-card-header>
+
+      <ion-card-title>{{hoteles.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{hoteles.categoria}}</ion-card-subtitle>
+
+    </ion-card-header>
+
+    <ion-card-content *ngFor="let habitacion of hoteles.tiposHabitacion">
+      <h1>
+        <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{habitacion.localidad}}
+      </h1>
+      <h2>
+        <ion-icon ios="ios-call" md="md-call"></ion-icon> {{habitacion.telefono}}
+      </h2>
+
+      <img class="imagenHabitacion" src="{{habitacion.imagen}}">
+
+      <br>
+      <h2>{{habitacion.precio}} <ion-icon ios="logo-usd" md="logo-usd"></ion-icon>
+      </h2>
+      <h2>Camas: {{habitacion.tipoHabitacion.camas}}</h2>
+      <h2>Capacidad: {{habitacion.tipoHabitacion.capacidad}}</h2>
+      <h2>Complementos: {{habitacion.tipoHabitacion.complementos.nombre}}</h2>
+      <br>
+      <h2>Opinion: {{habitacion.caracteristicasGenerales}}</h2>
+      <br>
       
-    </ion-card>
-  
+      <ion-button *ngIf=seleccionLike size="small" (click)="like()" >
+        <ion-icon class="tamanoIcono" ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>LIKE
+      </ion-button>
+ 
+
+    </ion-card-content>
+
+
+  </ion-card>
+
 </ion-content>

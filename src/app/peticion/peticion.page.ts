@@ -20,8 +20,9 @@ export class PeticionPage implements OnInit {
   private _seleccionCategoria: string;
   private _seleccionCama: string;
   private _seleccionCapacidad: string;
-  private _extrasHtml : string[]= [];
+  private _extrasHtml: string[] = [];
   private hoteles;
+
 
   knobValues = {
     upper: 1000,
@@ -45,19 +46,19 @@ export class PeticionPage implements OnInit {
     }
   }
 
- 
+
 
   ngOnInit() {
 
   }
 
   public buscarHotel() {
-    let seleccion: Seleccion = new Seleccion(this.knobValues.lower, this.knobValues.upper, this._seleccionCategoria, this._extrasHtml,this._seleccionCapacidad,this._seleccionCama);
+    let seleccion: Seleccion = new Seleccion(this.knobValues.lower, this.knobValues.upper, this._seleccionCategoria, this._extrasHtml, this._seleccionCapacidad, this._seleccionCama);
 
     let navigationExtras: NavigationExtras = {
       state: {
         seleccion: seleccion,
-        hoteles:this.hoteles
+        hoteles: this.hoteles
       }
     }
     this.router.navigate(['resultado'], navigationExtras);
@@ -80,32 +81,46 @@ export class PeticionPage implements OnInit {
     return this._extrasHtml;
   }
 
-	public get seleccionCategoria(): string  {
-		return this._seleccionCategoria;
-	}
-
-	public get seleccionCama(): string  {
-		return this._seleccionCama;
-	}
-
-	public get seleccionCapacidad(): string  {
-		return this._seleccionCapacidad;
-	}
-
-	public set seleccionCategoria(value: string ) {
-		this._seleccionCategoria = value;
-	}
-
-	public set seleccionCama(value: string ) {
-		this._seleccionCama = value;
-	}
-
-	public set seleccionCapacidad(value: string ) {
-		this._seleccionCapacidad = value;
+  public get seleccionCategoria(): string {
+    return this._seleccionCategoria;
   }
-  
-  public set extrasHtml(value){
-    this._extrasHtml=value;
+
+  public get seleccionCama(): string {
+    return this._seleccionCama;
+  }
+
+  public get seleccionCapacidad(): string {
+    return this._seleccionCapacidad;
+  }
+
+  public set seleccionCategoria(value: string) {
+    this._seleccionCategoria = value;
+  }
+
+  public set seleccionCama(value: string) {
+    this._seleccionCama = value;
+  }
+
+  public set seleccionCapacidad(value: string) {
+    this._seleccionCapacidad = value;
+  }
+
+  public set extrasHtml(value) {
+    this._extrasHtml = value;
+  }
+  toggleDarkTheme() {
+    const toggle = document.querySelector('#themeToggle');
+    toggle.addEventListener('ionChange', (ev) => {
+      document.body.classList.toggle('dark', ev.detail.checked);
+    });
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    prefersDark.addListener((e) => checkToggle(e.matches));
+    function loadApp() {
+      checkToggle(prefersDark.matches);
+    }
+    function checkToggle(shouldCheck) {
+      toggle.checked = shouldCheck;
+    }
   }
 
 }

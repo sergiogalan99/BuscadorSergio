@@ -89,8 +89,6 @@ export class ResultadoPage implements OnInit {
   }
 
   private filtrarPorPuntuacion(seleccion: Seleccion, hoteles: Hotel[]): Hotel[] {
-
-    console.log(seleccion.puntuacion);
     let hotelesFiltrados = hoteles.filter(hotel => Categoria[hotel.categoria.toString()] == seleccion.puntuacion);
     return hotelesFiltrados;
   }
@@ -112,8 +110,8 @@ export class ResultadoPage implements OnInit {
     hoteles.forEach(hotel => {
       let aniadirHotel = false;
       hotel.tiposHabitacion.forEach(habitacion => {
-        let habitacionFiltrada = habitacion.tipoHabitacion.complementos.nombre.filter(extra => seleccion.extras.includes(extra.toString()) && seleccion.extras.length == habitacion.tipoHabitacion.complementos.nombre.length);
-        if (habitacionFiltrada.length > 0) {
+        let habitacionFiltrada = habitacion.tipoHabitacion.complementos.nombre.filter(extra => seleccion.extras.includes(extra.toString()));
+    if (habitacionFiltrada.length > 0) {
           aniadirHotel = true;
         }
       })

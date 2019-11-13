@@ -1,14 +1,22 @@
 <ion-header>
+    
   <ion-toolbar>
-    <ion-title>resultado</ion-title>
-    <ion-button routerLink="/peticion">
-      <ion-icon slot="start" name="arrow-back"></ion-icon>
+    
+   
+      <ion-title>resultado</ion-title>
+    <ion-button slot="start" routerLink="/peticion">
+      <ion-icon  name="arrow-back"></ion-icon>
+     
     </ion-button>
+   
+    
+    <ion-badge color="dark" slot="end">{{arrayHoteles.length}} </ion-badge>
   </ion-toolbar>
+ 
+ 
 </ion-header>
 
 <ion-content>
-
   
   <ion-card  button="true" (click)="caracteristicasAvanzadas(hoteles.nombre)" class="cardHoteles" *ngFor="let hoteles of arrayHoteles">
    

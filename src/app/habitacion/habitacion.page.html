@@ -1,4 +1,5 @@
   <ion-header>
+  
     <ion-toolbar>
       <ion-title>habitacion</ion-title>
       <ion-button routerLink="/resultado">
@@ -18,14 +19,18 @@
       </ion-card-header>
   
       <ion-card-content *ngFor="let habitacion of hoteles.tiposHabitacion">
-  
+   <h1> <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{habitacion.localidad}}</h1>
+   <h2> <ion-icon ios="ios-call" md="md-call"></ion-icon> {{habitacion.telefono}}</h2>
+
         <img class="imagenHabitacion" src="{{habitacion.imagen}}">
+       
         <br>
-        <h3>Precio: {{habitacion.precio}} €</h3>
-        <h3>Camas: {{habitacion.tipoHabitacion.camas}}</h3>
-        <h3>Capacidad: {{habitacion.tipoHabitacion.capacidad}}</h3>
-        <h3>Complementos: {{habitacion.tipoHabitacion.complementos.nombre}}</h3>
-  
+        <h2>{{habitacion.precio}}  <ion-icon ios="logo-usd" md="logo-usd"></ion-icon></h2>
+        <h2>Camas: {{habitacion.tipoHabitacion.camas}}</h2>
+        <h2>Capacidad: {{habitacion.tipoHabitacion.capacidad}}</h2>
+        <h2>Complementos: {{habitacion.tipoHabitacion.complementos.nombre}}</h2>
+        <br>
+        <h2>Opinion: {{habitacion.caracteristicasGenerales}}</h2>
       </ion-card-content>
     
       

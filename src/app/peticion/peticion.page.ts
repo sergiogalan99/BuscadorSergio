@@ -108,11 +108,6 @@ export class PeticionPage implements OnInit {
   public set extrasHtml(value) {
     this._extrasHtml = value;
   }
-  toggleDarkTheme() {
-    const toggle = document.querySelector('#themeToggle');
-    toggle.addEventListener('ionChange', (ev) => {
-      document.body.classList.toggle('dark', ev.detail.checked);
-    });
-  }
+ 
 
 }

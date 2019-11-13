@@ -113,14 +113,6 @@ export class PeticionPage implements OnInit {
     toggle.addEventListener('ionChange', (ev) => {
       document.body.classList.toggle('dark', ev.detail.checked);
     });
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    prefersDark.addListener((e) => checkToggle(e.matches));
-    function loadApp() {
-      checkToggle(prefersDark.matches);
-    }
-    function checkToggle(shouldCheck) {
-      toggle.checked = shouldCheck;
-    }
   }
 
 }

@@ -3,10 +3,12 @@
         width:50%;
         margin-left: auto;
         margin-right: auto;
+        border-style: solid;
 }
 .cardHoteles{
     text-align: center;
-    background: rgb(224, 220, 180);
+    background: rgb(138, 133, 81);
+    border-style: solid;
    
     
 }
@@ -15,11 +17,13 @@
     width: 50%;
     position: absolute;
     margin-left: 5%;
+    border-style: solid;
  }
  h1{
     background:rgb(109, 197, 178);
     border: 1px solid #000;
     text-align: center;
+    border-style: solid;
  }
  tr{
     text-align: left;
@@ -42,12 +46,4 @@
     padding: 0.3em;
     caption-side: bottom;
  }
- caption {
-    padding: 0.3em;
-    color: #fff;
-     background: #000;
-     text-align: center;
- }
- th {
-    background: #eee;
- }
+
